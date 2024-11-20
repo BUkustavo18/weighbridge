@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog.html">Daily Log</a></li>
+                <li><a href="tracker.html">Violation Tracking</a></li>
+                <li><a href="report.html">Summary Report</a></li>
+                <li><a href="setting.html">Settings</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Reporting</h1>
+                <p>Generate and view reports on weighbridge activities.</p>
+            </header>
+
+            <!-- Generate Reports Section -->
+            <section class="generate-report-section">
+                <h2>Select Report Type</h2>
+                <div class="form-group">
+                    <label for="report-type">Report Type:</label>
+                    <select id="report-type">
+                        <option value="daily">Daily Report</option>
+                        <option value="monthly">Monthly Report</option>
+                        <option value="annual">Annual Report</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn-generate-report">Generate Report</button>
+                </div>
+            </section>
+
+            <!-- View Information by Date Section -->
+            <section class="view-information-section">
+                <h2>Select Date to View Information</h2>
+                <div class="form-group">
+                    <label for="view-date">Date:</label>
+                    <input type="date" id="view-date" required>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn-view-info">View Information</button>
+                </div>
+            </section>
+
+            <!-- History of Generated Reports Section -->
+            <section class="history-reports">
+                <h2>History of Generated Reports</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Report Type</th>
+                            <th>Date Generated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Daily Report</td>
+                            <td>2024-10-15</td>
+                            <td><button class="btn-action">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Report</td>
+                            <td>2024-09-30</td>
+                            <td><button class="btn-action">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Annual Report</td>
+                            <td>2023-12-31</td>
+                            <td><button class="btn-action">View</button></td>
+                        </tr>
+                        <!-- Additional rows can be added here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- View All Collected Data Table -->
+            <section class="view-data">
+                <h2>All Collected Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Plate Number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Truck Type</th>
+                            <th>Commodity</th>
+                            <th>Weight Per Axle (kgs)</th>
+                            <th>Total Weight (kgs)</th>
+                            <th>GVW</th>
+                            <th>Excess Load (kgs)</th>
+                            <th>Apprehended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ABC1234</td>
+                            <td>2024-10-15</td>
+                            <td>08:30</td>
+                            <td>Heavy Truck</td>
+                            <td>Sand</td>
+                            <td>2000</td>
+                            <td>5000</td>
+                            <td>5500</td>
+                            <td>500</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>XYZ5678</td>
+                            <td>2024-10-15</td>
+                            <td>09:15</td>
+                            <td>Light Truck</td>
+                            <td>Gravel</td>
+                            <td>1800</td>
+                            <td>4000</td>
+                            <td>4200</td>
+                            <td>200</td>
+                            <td>No</td>
+                        </tr>
+                        <!-- Additional rows of data can be added here -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <a href="admin_dashboard.html">Back to Admin Dashboard</a>
+    </footer>
+</body>
+</html>

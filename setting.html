@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog.html">Daily Log</a></li>
+                <li><a href="tracker.html">Violation Tracking</a></li>
+                <li><a href="report.html">Summary Report</a></li>
+                <li><a href="setting.html">Settings</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Settings</h1>
+                <p>Manage your account, system preferences, and user settings.</p>
+            </header>
+
+            <section class="settings-section">
+                <form action="#" method="POST" class="settings-form">
+                    <!-- Account Information Section -->
+                    <div class="settings-group">
+                        <h2>Account Information</h2>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="Admin" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="admin@example.com" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter new password">
+                    </div>
+
+                    <!-- System Preferences Section -->
+                    <div class="settings-group">
+                        <h2>System Preferences</h2>
+                        
+
+                        <label for="notifications">Notifications:</label>
+                        <select id="notifications" name="notifications">
+                            <option value="on">On</option>
+                            <option value="off">Off</option>
+                        </select>
+
+                        
+                    </div>
+
+                    <!-- User Management Section -->
+                    <div class="settings-group">
+                        <h2>User Management</h2>
+
+                        <!-- Add New User -->
+                        <div class="form-group">
+                            <h3>Add New User</h3>
+                            <label for="new-username">Username:</label>
+                            <input type="text" id="new-username" name="new-username" placeholder="Enter username" >
+
+                            <label for="new-email">Email:</label>
+                            <input type="email" id="new-email" name="new-email" placeholder="Enter email" >
+
+                            <label for="new-password">Password:</label>
+                            <input type="password" id="new-password" name="new-password" placeholder="Enter password">
+
+                            <label for="new-usertype">Role:</label>
+                            <select id="new-usertype" name="new-usertype">
+                                <option value="operator">Operator</option>
+                                <option value="admin">Admin</option>
+                            </select>
+
+                            <button type="submit" class="add-user-btn">Add User</button>
+                        </div>
+
+                        <!-- Manage Existing Users -->
+                        <div class="form-group">
+                            <h3>Manage Existing Users</h3>
+                            <ul class="user-list">
+                                <li>
+                                    <span class="user-info">Username: operator1</span>
+                                    <select class="user-role">
+                                        <option value="operator" selected>Operator</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                    <button class="deactivate-btn">Deactivate</button>
+                                </li>
+                                <li>
+                                    <span class="user-info">Username: admin1</span>
+                                    <select class="user-role">
+                                        <option value="operator">Operator</option>
+                                        <option value="admin" selected>Admin</option>
+                                    </select>
+                                    <button class="deactivate-btn">Deactivate</button>
+                                </li>
+                                <!-- More user entries can go here -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="settings-action">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

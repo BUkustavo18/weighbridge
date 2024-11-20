@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violation Tracking - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog.html">Daily Log</a></li>
+                <li><a href="tracker.html">Violation Tracking</a></li>
+                <li><a href="report.html">Summary Report</a></li>
+                <li><a href="setting.html">Settings</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Violation Tracking</h1>
+                <p>Monitor and search recorded violations by plate number or date.</p>
+            </header>
+
+            <section class="violation-tracking">
+                <!-- Search by Plate Number -->
+                <div class="form-group">
+                    <h2>Search Violations by Plate Number</h2>
+                    <label for="search-plate-number">Enter Plate Number:</label>
+                    <input type="text" id="search-plate-number" placeholder="e.g., ABC1234">
+                    <button type="button" class="btn-search"> <a href="sample1.html">Search</a></button>
+                </div>
+
+                <!-- Search by Date -->
+                <div class="form-group">
+                    <h2>Search Violators by Date</h2>
+                    <label for="search-date">Select Date Range:</label>
+                    <select id="search-date">
+                        <option value="today">Today</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="annually">Annually</option>
+                        <option value="custom">Custom Date</option>
+                    </select>
+                    <div id="custom-date-range" style="display: none;">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date">
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                    <button type="button" class="btn-search">Search</button>
+                </div>
+            </section>
+
+            <!-- Recent Violators Section -->
+            <section class="recent-violators">
+                <h2>Recent Violators</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Plate Number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Violation Type</th>
+                            <th>Excess Load (kgs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>XYZ1234</td>
+                            <td>2024-10-15</td>
+                            <td>08:30</td>
+                            <td>Overloading</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>ABC5678</td>
+                            <td>2024-10-14</td>
+                            <td>09:15</td>
+                            <td>Improper Load</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>LMN4321</td>
+                            <td>2024-10-13</td>
+                            <td>10:00</td>
+                            <td>Overloading</td>
+                            <td>1500</td>
+                        </tr>
+                        <!-- More rows can be added here -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <a href="admin_dashboard.html">Back to Admin Dashboard</a>
+    </footer>
+
+    <script>
+        // Display custom date range fields when "Custom Date" is selected
+        document.getElementById('search-date').addEventListener('change', function() {
+            const customDateRange = document.getElementById('custom-date-range');
+            if (this.value === 'custom') {
+                customDateRange.style.display = 'block';
+            } else {
+                customDateRange.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

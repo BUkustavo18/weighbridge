@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Log - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add some basic styling for the recorded data display */
+        .recorded-data {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .review-section {
+            margin-top: 50px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e8f0fe;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="operator_dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog_operator.html">Daily Log</a></li>
+                <li><a href="operator_tracker.html">Violation Tracking</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Daily Truck Weighing Log</h1>
+                <p>Please fill in the truck and weighing data below.</p>
+            </header>
+
+            <form id="daily-log-form" onsubmit="showRecordedData(event)">
+                <div class="form-layout">
+                    <!-- Truck Data Information (Left) -->
+                    <section class="truck-data">
+                        <h2>Truck Data Information</h2>
+                        <div class="form-group">
+                            <label for="time">Time (HH:MM AM/PM):</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plate-number">Plate Number (Tractor Head &amp; Trailer):</label>
+                            <input type="text" id="plate-number" name="plate-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lto-cr">LTO CR No.:</label>
+                            <input type="text" id="lto-cr" name="lto-cr" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lto-or">LTO OR Date:</label>
+                            <input type="date" id="lto-or" name="lto-or" required>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label for="truck-type">Truck Type:</label>
+                            <input type="text" id="truck-type" name="truck-type" required>
+                        </div>
+                        -->
+                        <div class="form-group">
+                            <label for="truck-type">Truck/Trailer Type:</label>
+                            <select id="truck-type" name="truck-type" required aria-label="Select truck or trailer type" onchange="updateGVW()">
+                                <option value="" disabled selected>Select</option>
+                                <option value="1-1">1-1 (6 wheels)</option>
+                                <option value="1-2">1-2 (10 wheels)</option>
+                                <option value="1-3">1-3 (14 wheels)</option>
+                                <option value="11-1">11-1 (10 wheels)</option>
+                                <option value="11-2">11-2 (14 wheels)</option>
+                                <option value="11-3">11-3 (18 wheels)</option>
+                                <option value="12-1">12-1 (14 wheels)</option>
+                                <option value="12-2">12-2 (18 wheels)</option>
+                                <option value="12-3">12-3 (22 wheels)</option>
+                                <option value="11-11">11-11 (14 wheels)</option>
+                                <option value="11-12">11-12 (18 wheels)</option>
+                                <option value="12-11">12-11 (18 wheels)</option>
+                                <option value="12-12">12-12 (22 wheels)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="commodity-carried">Commodity Carried:</label>
+                            <input type="text" id="commodity-carried" name="commodity-carried" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="commodity-type">Commodity Type:</label>
+                            <input type="text" id="commodity-type" name="commodity-type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="origin">Origin:</label>
+                            <input type="text" id="origin" name="origin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination:</label>
+                            <input type="text" id="destination" name="destination" required>
+                        </div>
+                    </section>
+
+                    <!-- Weighing Data (Right) -->
+                    <section class="weighing-data">
+                        <h2>Weighing Data</h2>
+                        <div class="axle-group">
+                            <label>Weight per Axle (kgs):</label>
+                            <div class="axle-inputs">
+                                <input type="number" name="1st-axle" placeholder="1st Axle" required oninput="calculateTotalWeight()" required oninput="calculateExcessLoad()">
+                                <input type="number" name="2nd-axle" placeholder="2nd Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="3rd-axle" placeholder="3rd Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="4th-axle" placeholder="4th Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="5th-axle" placeholder="5th Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="6th-axle" placeholder="6th Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="7th-axle" placeholder="7th Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                                <input type="number" name="8th-axle" placeholder="8th Axle" oninput="calculateTotalWeight()" oninput="calculateExcessLoad()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="total-weight">Total Weight (kgs):</label>
+                            <input type="number" id="total-weight" name="total-weight" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="gvw">Allowable GVW (kgs):</label>
+                            <input type="text" id="gvw" name="gvw" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="excess-load">Excess Load per Axle (kgs):</label>
+                            <input type="text" id="excess-load" name="excess-load" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="excess-gvw">Excess Load per GVW (kgs):</label>
+                            <input type="text" id="excess-gvw" name="excess-gvw" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="overloaded-axles">Number of Overloaded Axles:</label>
+                            <input type="number" id="overloaded-axles" name="overloaded-axles" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="overloaded">Overloaded:</label>
+                            <select id="overloaded" name="overloaded" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="both">Both (GVW &amp; Axle)</option>
+                                <option value="gvw-only">GVW Only</option>
+                                <option value="axle-only">Axle Only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="apprehended">Apprehended:</label>
+                            <select id="apprehended" name="apprehended" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </section>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Daily Log</button>
+            </form>
+
+            <!-- Review Section -->
+            <div id="review-section" class="review-section" style="display:none;">
+                <h2>Review Recorded Data:</h2>
+                <pre id="data-output"></pre>
+                <button onclick="exportData()">Export Data</button>
+                <button onclick="resetForm()">Submit Again</button>
+            </div>
+
+            <!-- Area to display recorded data -->
+            <div id="recorded-data" class="recorded-data" style="display:none;">
+                <h2>Recorded Data:</h2>
+                <pre id="data-output"></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="admin_dashboard.html">Back to Admin Dashboard</a>
+    </footer>
+
+    <script>
+        function showRecordedData(event) {
+            event.preventDefault(); // Prevents default form submission
+    
+            // Collect form data
+            const form = document.getElementById('daily-log-form');
+            const formData = new FormData(form);
+            let output = 'Truck Data Information:\n';
+    
+            formData.forEach((value, key) => {
+                output += `${key}: ${value || 'N/A'}\n`; // Display 'N/A' for empty fields
+            });
+    
+            // Display recorded data
+            document.getElementById('data-output').textContent = output;
+            document.getElementById('recorded-data').style.display = 'block';
+            document.getElementById('review-section').style.display = 'block';
+    
+            // Reset form after showing data
+            form.reset();
+            document.getElementById('total-weight').value = ''; // Reset total weight field
+        }
+    
+        function calculateTotalWeight() {
+            const axleWeights = document.querySelectorAll('input[name="1st-axle"], input[name="2nd-axle"], input[name="3rd-axle"], input[name="4th-axle"], input[name="5th-axle"], input[name="6th-axle"], input[name="7th-axle"], input[name="8th-axle"]');
+            let totalWeight = 0;
+    
+            axleWeights.forEach(input => {
+                const weight = parseFloat(input.value) || 0; // Parse weight and handle NaN
+                totalWeight += weight; // Sum the axle weights
+
+            });
+    
+            // Update the Total Weight field
+            document.getElementById('total-weight').value = totalWeight; // Set the total weight
+             calculateExcessGVW();
+        }
+    
+        function exportData() {
+            // Logic for exporting data (e.g., save to file)
+            alert('Exporting data...');
+        }
+    
+        function resetForm() {
+            const form = document.getElementById('daily-log-form');
+            form.reset(); // Reset the form
+            document.getElementById('recorded-data').style.display = 'none'; // Hide recorded data
+            document.getElementById('review-section').style.display = 'none'; // Hide review section
+        }
+
+
+
+        function updateGVW() {
+            const truckType = document.getElementById("truck-type").value;
+            const gvwField = document.getElementById("gvw");
+            let gvw;
+    
+            switch (truckType) {
+                case "1-1":
+                    gvw = 18000;
+                    break;
+                case "1-2":
+                    gvw = 33300;
+                    break;
+                case "1-3":
+                    gvw = 35600;
+                    break;
+                case "11-1":
+                    gvw = 34000;
+                    break;
+                case "11-2":
+                    gvw = 40600;
+                    break;
+                case "11-3":
+                    gvw = 41000;
+                    break;
+                case "12-1":
+                    gvw = 39700;
+                    break;
+                case "12-2":
+                    gvw = 41500;
+                    break;
+                case "12-3":
+                    gvw = 42000;
+                    break;
+                case "11-11":
+                    gvw = 39700;
+                    break;
+                case "11-12":
+                    gvw = 43500;
+                    break;
+                case "12-11":
+                    gvw = 43500;
+                    break;
+                case "12-12":
+                    gvw = 45000;
+                    break;
+                default:
+                    gvw = "";
+                    break;
+            }
+    
+            gvwField.value = gvw; // Set the GVW value in the input field
+            document.getElementById("gvw").value = gvw; // Update the allowable GVW input
+            calculateExcessGVW(); // Recalculate excess GVW based on new allowable GVW
+        }
+
+        const axleLimit = 13500; // Maximum allowable weight per axle
+
+        function calculateExcessLoad() {
+            const axleInputs = document.querySelectorAll('.axle-inputs input'); // Select all axle input fields
+            let totalExcess = 0; // Initialize total excess load
+
+            axleInputs.forEach(input => {
+                const axleWeight = Number(input.value) || 0; // Get the weight from each input (default to 0 if empty)
+                if (axleWeight > axleLimit) { // Check if it exceeds the limit
+                    totalExcess += (axleWeight - axleLimit); // Add excess to total
+                }
+            });
+
+            // Display total excess load in the specified input field
+            document.getElementById("excess-load").value = totalExcess; 
+        }
+
+        // Attach the calculateExcessLoad function to the oninput event of all axle input fields
+        document.querySelectorAll('.axle-inputs input').forEach(input => {
+            input.addEventListener('input', calculateExcessLoad);
+        });
+
+
+        
+        function calculateExcessGVW() {
+            const totalWeight = Number(document.getElementById("total-weight").value) || 0;
+            const allowableGVW = Number(document.getElementById("gvw").value) || 0;
+        
+            const excessGVW = totalWeight - allowableGVW;
+        
+            // Display the calculated Excess Load per GVW in the specified input field
+            document.getElementById("excess-gvw").value = excessGVW > 0 ? excessGVW : 0; // Show excess weight or 0 if not overloaded
+        }
+
+        
+    </script>
+    
+</body>
+</html>

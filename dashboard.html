@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog.html">Daily Log</a></li>
+                <li><a href="tracker.html">Violation Tracking</a></li>
+                <li><a href="report.html">Summary Report</a></li>
+                <li><a href="setting.html">Settings</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome, Admin</h1>
+                <p>Manage the weighbridge station operations efficiently.</p>
+            </header>
+
+            <section class="dashboard-overview">
+                <div class="dashboard-card">
+                    <h2>Daily Log</h2>
+                    <p>Access the daily log records for trucks weighed.</p>
+                    <a href="dailylog.html" class="card-link">View Log</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2>Violation Tracking</h2>
+                    <p>Track and manage all violations recorded at the station.</p>
+                    <a href="tracker.html" class="card-link">Track Violations</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2>Summary Report</h2>
+                    <p>Generate detailed summary reports for daily, monthly, and annual activity.</p>
+                    <a href="report.html" class="card-link">Generate Report</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

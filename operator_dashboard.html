@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Dashboard - Weighbridge Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Weighbridge Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="operator_dashboard.html">Dashboard</a></li>
+                <li><a href="dailylog_operator.html">Daily Log</a></li>
+                <li><a href="operator_tracker.html">Violation Tracking</a></li>
+                <li><a href="login.html">Log Out</a></li> <!-- Link back to Login Page -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome, Operator</h1>
+                <p>Manage daily operations at the weighbridge station efficiently.</p>
+            </header>
+
+            <section class="dashboard-overview">
+                <div class="dashboard-card">
+                    <h2>Daily Log</h2>
+                    <p>Access the daily log records for trucks weighed.</p>
+                    <a href="dailylog_operator.html" class="card-link">View Log</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2>Violation Tracking</h2>
+                    <p>Track and manage all violations recorded at the station.</p>
+                    <a href="operator_tracker.html" class="card-link">Track Violations</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
